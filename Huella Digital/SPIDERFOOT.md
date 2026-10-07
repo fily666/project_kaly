@@ -1,246 +1,151 @@
-// ========================================
-// OSINT CON SPIDERFOOT EN KALI LINUX
-// ========================================
+# SPIDERFOOT — OSINT automatizado
 
-// SpiderFoot permite automatizar la recopilación
-// de información pública (OSINT) sobre un objetivo.
-//
-// USAR ÚNICAMENTE sobre objetivos propios,
-// autorizados o dentro de un laboratorio.
+> **Categoría:** Huella Digital
+> **Objetivo:** automatizar la recopilación de información pública (OSINT) sobre un objetivo.
+>
+> ⚠️ Usar únicamente sobre objetivos propios, autorizados o dentro de un laboratorio.
 
-// --- 1. VERIFICAR SI SPIDERFOOT ESTÁ INSTALADO ---
+---
 
+## 1. Verificar si SpiderFoot está instalado
+
+```bash
 spiderfoot -h
+```
 
-// Si muestra la ayuda, está disponible.
+Si muestra la ayuda, está disponible. También se puede comprobar la versión:
 
-// También podemos comprobar la versión:
-
+```bash
 spiderfoot --version
+```
 
+## 2. Iniciar SpiderFoot
 
-// --- 2. INICIAR SPIDERFOOT ---
-
+```bash
 spiderfoot -l 127.0.0.1:5001
+```
 
-// -l = dirección y puerto donde escuchará SpiderFoot
-//
-// Después abrir en el navegador:
-//
-// http://127.0.0.1:5001
+- `-l` → dirección y puerto donde escuchará SpiderFoot.
 
+Después abrir en el navegador: <http://127.0.0.1:5001>
 
-// --- 3. CREAR UN ESCANEO DESDE LA INTERFAZ WEB ---
+## 3. Crear un escaneo desde la interfaz web
 
-// Desde el navegador:
-//
-// 1. Abrir:
-//    http://127.0.0.1:5001
-//
-// 2. Seleccionar "New Scan"
-//
-// 3. Introducir el objetivo
-//
-// Ejemplos de objetivos:
-//
-// dominio.com
-// usuario@dominio.com
-// 203.0.113.10
-//
-// Usar únicamente objetivos autorizados.
+1. Abrir <http://127.0.0.1:5001>
+2. Seleccionar **New Scan**
+3. Introducir el objetivo
 
+**Ejemplos de objetivos:**
 
-// --- 4. ELEGIR EL TIPO DE OBJETIVO ---
+```text
+dominio.com
+usuario@dominio.com
+203.0.113.10
+```
 
-// SpiderFoot puede trabajar con diferentes tipos
-// de objetivos.
-//
-// Ejemplos:
-//
-// DOMAIN_NAME
-// IP_ADDRESS
-// EMAILADDR
-// USERNAME
-//
-// El tipo depende de qué información queremos
-// investigar.
+## 4. Elegir el tipo de objetivo
 
+El tipo depende de qué información queremos investigar:
 
-// --- 5. SELECCIONAR LOS MÓDULOS ---
+| Tipo          | Ejemplo               |
+|---------------|-----------------------|
+| `DOMAIN_NAME` | `dominio.com`         |
+| `IP_ADDRESS`  | `203.0.113.10`        |
+| `EMAILADDR`   | `usuario@dominio.com` |
+| `USERNAME`    | `usuario`             |
 
-// SpiderFoot utiliza módulos para obtener
-// diferentes tipos de información.
-//
-// Algunos módulos pueden buscar:
-//
-// - DNS
-// - WHOIS
-// - subdominios
-// - direcciones IP
-// - correos electrónicos
-// - nombres de usuario
-// - certificados
-// - datos públicos
-//
-// Podemos utilizar el perfil de escaneo recomendado
-// o seleccionar módulos manualmente.
+## 5. Seleccionar los módulos
 
+SpiderFoot utiliza módulos para obtener distintos tipos de información:
 
-// --- 6. EJECUTAR EL ESCANEO ---
+- DNS
+- WHOIS
+- Subdominios
+- Direcciones IP
+- Correos electrónicos
+- Nombres de usuario
+- Certificados
+- Datos públicos
 
-// Después de seleccionar:
-//
-// TARGET
-// SCAN PROFILE
-// MODULES
-//
-// iniciar el escaneo.
-//
-// SpiderFoot recopilará información pública
-// y mostrará los resultados en la interfaz.
+Se puede usar el **perfil de escaneo recomendado** o seleccionar módulos manualmente.
 
+## 6. Ejecutar el escaneo
 
-// --- 7. REVISAR LOS RESULTADOS ---
+Después de seleccionar **TARGET**, **SCAN PROFILE** y **MODULES**, iniciar el escaneo.
+SpiderFoot recopilará información pública y mostrará los resultados en la interfaz.
 
-// SpiderFoot organiza los resultados en diferentes
-// categorías.
-//
-// Podemos encontrar información relacionada con:
-//
-// Dominios
-// Subdominios
-// IPs
-// DNS
-// Emails
-// URLs
-// Certificados
-// Tecnologías
-// Usuarios
-//
-// Los resultados dependen del objetivo y de los
-// módulos habilitados.
+## 7. Revisar los resultados
 
+Los resultados se organizan por categorías:
 
-// --- 8. BUSCAR INFORMACIÓN CONCRETA ---
+- Dominios y subdominios
+- IPs y DNS
+- Emails y usuarios
+- URLs
+- Certificados
+- Tecnologías
 
-// Utilizar los filtros de SpiderFoot para localizar
-// resultados específicos.
-//
-// Ejemplo:
-//
-// Buscar todos los subdominios encontrados
-//
-// Buscar direcciones IP
-//
-// Buscar correos electrónicos
-//
-// Buscar tecnologías detectadas
+Los resultados dependen del objetivo y de los módulos habilitados.
 
+## 8. Buscar información concreta
 
-// --- 9. VISUALIZAR RELACIONES ---
+Usar los filtros de SpiderFoot para localizar resultados específicos.
 
-// SpiderFoot puede representar los resultados
-// mediante relaciones entre diferentes elementos.
-//
-// Ejemplo:
-//
-// DOMINIO
-//    |
-//    +---- SUBDOMINIO
-//    |
-//    +---- IP
-//    |
-//    +---- CERTIFICADO
-//    |
-//    +---- EMAIL
-//
-// Esto ayuda a comprender la relación entre
-// los datos encontrados.
+**Ejemplos:**
 
+- Todos los subdominios encontrados
+- Direcciones IP
+- Correos electrónicos
+- Tecnologías detectadas
 
-// --- 10. GUARDAR / EXPORTAR RESULTADOS ---
+## 9. Visualizar relaciones
 
-// Desde la interfaz de SpiderFoot se pueden
-// consultar y exportar los resultados del escaneo.
-//
-// Guardar los resultados permite posteriormente
-// analizarlos o documentarlos.
+SpiderFoot puede representar los resultados como relaciones entre elementos:
 
+```text
+DOMINIO
+   |
+   +---- SUBDOMINIO
+   |
+   +---- IP
+   |
+   +---- CERTIFICADO
+   |
+   +---- EMAIL
+```
 
-// --- 11. EJEMPLO DE FLUJO DE TRABAJO ---
+Esto ayuda a comprender cómo se relacionan los datos encontrados.
 
-// Objetivo autorizado:
-//
-// example.com
-//
-// 1. Iniciar SpiderFoot
-//
-// 2. Abrir:
-//
-// http://127.0.0.1:5001
-//
-// 3. New Scan
-//
-// 4. Introducir:
-//
-// example.com
-//
-// 5. Seleccionar el tipo:
-//
-// DOMAIN_NAME
-//
-// 6. Seleccionar un perfil de escaneo
-//
-// 7. Ejecutar
-//
-// 8. Revisar:
-//
-// - dominios
-// - subdominios
-// - DNS
-// - IPs
-// - certificados
-// - emails públicos
-// - URLs
-//
-// 9. Exportar/documentar los resultados
+## 10. Guardar / exportar resultados
 
+Desde la interfaz se pueden consultar y exportar los resultados del escaneo para analizarlos o documentarlos después.
 
-// ========================================
-// RESUMEN
-// ========================================
+## 11. Ejemplo de flujo de trabajo
 
-// Comprobar instalación
-spiderfoot -h
+**Objetivo autorizado:** `example.com`
 
-// Iniciar SpiderFoot
-spiderfoot -l 127.0.0.1:5001
+1. Iniciar SpiderFoot: `spiderfoot -l 127.0.0.1:5001`
+2. Abrir <http://127.0.0.1:5001>
+3. Clic en **New Scan**
+4. Introducir `example.com`
+5. Seleccionar el tipo `DOMAIN_NAME`
+6. Seleccionar un perfil de escaneo
+7. Ejecutar
+8. Revisar: dominios, subdominios, DNS, IPs, certificados, emails públicos, URLs
+9. Exportar / documentar los resultados
 
-// Abrir interfaz web
-http://127.0.0.1:5001
+---
 
-// Crear nuevo escaneo
-New Scan
+## Resumen
 
-// Introducir objetivo autorizado
-example.com
-
-// Seleccionar tipo de objetivo
-DOMAIN_NAME
-
-// Seleccionar perfil/módulos
-SCAN PROFILE
-
-// Ejecutar escaneo
-START SCAN
-
-// Analizar resultados
-DOMAINS
-SUBDOMAINS
-DNS
-IP
-EMAIL
-CERTIFICATES
-URLS
-
-// ========================================
+| Acción                     | Comando / Acción                                     |
+|----------------------------|------------------------------------------------------|
+| Comprobar instalación      | `spiderfoot -h`                                      |
+| Iniciar SpiderFoot         | `spiderfoot -l 127.0.0.1:5001`                       |
+| Abrir interfaz web         | <http://127.0.0.1:5001>                              |
+| Crear nuevo escaneo        | **New Scan**                                         |
+| Introducir objetivo        | `example.com`                                        |
+| Seleccionar tipo           | `DOMAIN_NAME`                                        |
+| Seleccionar perfil/módulos | **SCAN PROFILE**                                     |
+| Ejecutar escaneo           | **START SCAN**                                       |
+| Analizar resultados        | Domains, Subdomains, DNS, IP, Email, Certificates, URLs |
